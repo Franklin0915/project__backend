@@ -49,7 +49,7 @@ class IndexAPIView(APIView):
                     return Response({"data": plate_number})
             return Response({"data": "Unauthorized"}, 401)
         except Exception as e:
-            return Response({"data": 'Bad request'}, 403)
+            return Response({"data": e}, 403)
 
 
 
