@@ -7,8 +7,8 @@ from .utils import scrape_licence_number_plate
 import requests
 from .utils import scrape_licence_number_plate
 # Create your views here.
-
-
+from .serializers import RegisteredVehicleSerializer
+from .models import RegisteredVehicle
 
 
 
@@ -46,7 +46,14 @@ class IndexAPIView(APIView):
                     # Response is not in JSON format
                     content = response.content
                     plate_number = scrape_licence_number_plate(content)
-                    return Response({"data": plate_number})
+                    # Querying for vehicle
+                    vehicle = RegisteredVehicle.objects.filter(plate_number=plate_number)
+                    if vehicle.exists():
+                        data = RegisteredVehicleSerializer(vehicle).data
+                        return Response({"data": data})
+                    else:
+                        return Response({"data": "Vehicle not registered!"}, 403)
+
             return Response({"data": "Unauthorized"}, 401)
         except Exception as e:
             return Response({"data": e}, 403)
