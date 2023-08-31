@@ -49,7 +49,7 @@ class IndexAPIView(APIView):
                     # Querying for vehicle
                     vehicle = RegisteredVehicle.objects.filter(plate_number=plate_number)
                     if vehicle.exists():
-                        data = RegisteredVehicleSerializer(vehicle).data
+                        data = RegisteredVehicleSerializer(vehicle.first()).data
                         return Response({"data": data})
                     else:
                         return Response({"data": "Vehicle not registered!"}, 403)
