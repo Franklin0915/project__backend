@@ -6,7 +6,8 @@ class RegisteredVehicle(models.Model):
         ('male', 'male'),
         ('female', 'female')
     ]
-    name = models.CharField(max_length=255)
+    Vehicle_brand = models.CharField(max_length=255)
+    Vehicle_model = models.CharField(max_length=255)
     color = models.CharField(max_length=255, default="White")
     plate_number = models.CharField(max_length=255)
     owner_fullname = models.CharField(max_length=255)
