@@ -15,7 +15,6 @@ class RegisteredVehicle(models.Model):
     drivers_image = models.ImageField(blank=True, null=True)
     cars_image = models.ImageField(blank=True, null=True)
     owner_gender = models.CharField(max_length=100, choices = GENDER_LIST, blank=True, null=True)
-    car_model = models.CharField(max_length=100, blank=True, null=True)
     Registered = models.BooleanField(default=False)
     owners_nationality = models.CharField(max_length=255)
     owners_age = models.CharField(max_length=255)
