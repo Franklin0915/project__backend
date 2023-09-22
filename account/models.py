@@ -2,11 +2,20 @@ from django.db import models
 
 # Create your models here.
 class RegisteredVehicle(models.Model):
+    GENDER_LIST = [
+        ('male', 'male'),
+        ('female', 'female')
+    ]
     name = models.CharField(max_length=255)
     color = models.CharField(max_length=255, default="White")
     plate_number = models.CharField(max_length=255)
     owner_fullname = models.CharField(max_length=255)
     registered_at = models.CharField(max_length=255)
+    drivers_image = models.ImageField(blank=True, null=True)
+    cars_image = models.ImageField(blank=True, null=True)
+    owner_gender = models.CharField(max_length=100, choices = GENDER_LIST, blank=True, null=True)
+    car_model = models.CharField(max_length=100, blank=True, null=True)
+    numberplate_state = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-id']
